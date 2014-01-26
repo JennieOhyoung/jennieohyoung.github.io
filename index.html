@@ -6,6 +6,69 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href = "stylesheets/style.css" media ="screen" rel = "stylesheet" type = "text/css" />
 
+            <script src="static/js/jquery.js" type="text/javascript"></script>
+            <script src="static/js/purl.js" type="text/javascript"></script>
+            <script src="static/js/ua-parser.js" type="text/javascript"></script>
+            <script src="http://www.broofa.com/Tools/Math.uuid.js"></script>
+
+            <script type="text/javascript">
+             var Keen=Keen||{configure:function(e){this._cf=e},addEvent:function(e,t,n,i){this._eq=this._eq||[],this._eq.push([e,t,n,i])},setGlobalProperties:function(e){this._gp=e},onChartsReady:function(e){this._ocrq=this._ocrq||[],this._ocrq.push(e)}};(function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src=("https:"==document.location.protocol?"https://":"http://")+"dc8na2hxrj29i.cloudfront.net/code/keen-2.1.0-min.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})();
+
+            Keen.configure({
+              projectId: "52e43ba173f4bb20de000004",
+              writeKey: "9d273e4125541173cfd049302f0d87c2e4be07909fbc78631fc9efb46a7f5034342622fa3adbd56fb939f17f2485edc828d51517c5246d643152d3ffea9ff429f474a8589a0c9aa0e800f0b0c991c3ce5227c24edac68bb61577469d5252e473dd89c062b8c760c86198c0a745da4b0a",
+            });
+
+            </script>
+
+            <script>
+                $(document).ready(function(){
+
+              var fullUrl = window.location.href;
+              var parsedUrl = $.url(fullUrl);
+              var parser = new UAParser();
+
+              var eventProperties = {
+                url: {
+                  source: parsedUrl.attr("source"),
+                  protocol: parsedUrl.attr("protocol"),
+                  domain: parsedUrl.attr("host"),
+                  port: parsedUrl.attr("port"),
+                  path: parsedUrl.attr("path"),
+                  anchor: parsedUrl.attr("anchor")
+                },
+                user_agent: {
+                  browser: parser.getBrowser(),
+                  engine: parser.getEngine(),
+                  os: parser.getOS()
+                }
+              };
+
+              //Add information about the referrer of the same format as the current page
+              var referrer = document.referrer;
+              referrerObject = null;
+
+              if(referrer != undefined){
+                parsedReferrer = $.url(referrer);
+
+                referrerObject = {
+                  source: parsedReferrer.attr("source"),
+                  protocol: parsedReferrer.attr("protocol"),
+                  domain: parsedReferrer.attr("host"),
+                  port: parsedReferrer.attr("port"),
+                  path: parsedReferrer.attr("path"),
+                  anchor: parsedReferrer.attr("anchor")
+                }
+              }
+
+              eventProperties["referrer"] = referrerObject;
+
+              Keen.addEvent("pageviews", eventProperties)
+
+                });
+        </script>
+
+
         <h1 id = "blur"> Jennie Ohyoung </h1>
 
         <div class="container">
@@ -30,7 +93,13 @@
             <a href="mailto:jennieohyoung@gmail.com" class=email><img src = "img/email.png"></a>
         </p>
 
+
+
+
     </head>
+
+
+
 </html>
 
 
